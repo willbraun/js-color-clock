@@ -13,6 +13,7 @@ const dateToArrayOfRGB = (date) => {
     return [numToHex(date.getHours(),24),numToHex(date.getMinutes(),60),numToHex(date.getSeconds(),60)];
 }
 
+// This function handles all of the actions that occur when the display should update
 const updateDisplay = () => { 
     let now = new Date;
     let timeDisplay = now.toTimeString().slice(0,8);
