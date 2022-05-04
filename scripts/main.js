@@ -11,11 +11,16 @@ const dateToArrayOfRGB = (date) => {
 }
 
 let clockDisplay = document.querySelector('.clock-display');
+let showHex = false;
 
 const newTime = setInterval(function(){
     let now = new Date();
-    clockDisplay.innerText = now.toTimeString().slice(0,8);
-    document.querySelector('.clock-progress-bar').style.width = `${(now.getSeconds()/60)*14}rem`;
-    document.querySelector('.clock').style.background = dateToArrayOfRGB(now).join('');
-    let hover = clockDisplay.addEventListener('mouseover', e => e.target.innerText = dateToArrayOfRGB(now).join(':'));
+    let timeDisplay = now.toTimeString().slice(0,8);
+    let hexDisplay = dateToArrayOfRGB(now).join(':');
+    clockDisplay.innerText = showHex ? hexDisplay : timeDisplay;
+    document.querySelector('.clock-progress-bar').style.width = `${(now.getSeconds()*14/60).toFixed(2)}rem`;
+    document.querySelector('.clock').style.background = `#${dateToArrayOfRGB(now).join('')}`;
 },1000);
+
+clockDisplay.addEventListener('mouseover', () => showHex = true);
+clockDisplay.addEventListener('mouseout', () => showHex = false);
