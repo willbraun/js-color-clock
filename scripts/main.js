@@ -2,7 +2,7 @@
 // and so showHex is in the same scope as the later functions.
 (function(){
     const clockDisplay = document.querySelector('.clock-display');
-    let showHex = false
+    let showHex = false;
 
     // This function converts a date object to an array of [R,G,B] hex string values
     // It includes a function to convert a number to hexadecimal. 
@@ -18,7 +18,7 @@
 
     // This function handles all of the actions that occur when the display should update
     const updateDisplay = () => { 
-        let now = new Date;
+        const now = new Date();
         clockDisplay.innerText = showHex ? dateToArrayOfRGB(now).join(':') : now.toTimeString().slice(0,8);
         document.querySelector('.clock-progress-bar').style.width = `${(now.getSeconds()*14/60).toFixed(2)}rem`;
         document.querySelector('.clock').style.background = `#${dateToArrayOfRGB(now).join('')}`;
